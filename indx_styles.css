@@ -1,0 +1,28 @@
+body {
+    background-color: lightblue;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#header_container {
+    background-color: #00c083;
+    height: 39px;
+}
+
+#indx_header_logo {
+    float: left;
+
+
+    height: 30px;
+    width: auto;
+    margin:4px;
+
+}
+
+#indx_header_reload {
+    float: right;
+    height: 30px;
+    width: auto;
+    margin:4px;
+}
