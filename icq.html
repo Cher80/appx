@@ -2,38 +2,113 @@
 <html>
 <head lang="en">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="indx_styles.css">
+
     <script src=mustache.js></script>
     <script src=zepto.js></script>
-    <script src=indx.js></script>
+    <script src=j_moment.js></script>
+    <script src=api.js></script>
+
+    <script src=j_main.js></script>
+    <script src=j_remote_service.js></script>
+    <script src=j_display_service.js></script>
+    <script src=j_dummy_data.js></script>
 
     <script type="text/javascript">
+
+        console.log("Indx starts, init global vars");
+
+
+
+
+        //document.onload = startFunc();
+        window.onload = startFunc;
 
 
 
 
     </script>
+
+
     <meta charset="UTF-8">
-    <title></title>
+    <title>Indexisto ICQ app</title>
 </head>
 <body>
 
-<script id="template" type="x-tmpl-mustache">
-<div>
-<div class="divclass" style="border: 2px solid red;">Opana Hello {{ title }}!</div>
-<input class="inputclass" id="indx_butt" type="button"  value="Mustache button" />
+<div id="indx_header"></div>
+<div id="indx_items"></div>
+
+
+<script id="indx_item_template" type="x-tmpl-mustache">
+<div class="indx_source clearWrapper">
+    <div class="indx_source_pic_holder" ><img class="indx_source_pic" src="https://image.indexisto.com/download/{{sourceImg}}_sw64"/></div>
+    <div class="indx_source_explain_holder">
+        <div class="indx_source_title">{{streamName}}</div>
+        <div class="indx_source_time">{{timeStr}}</div>
+    </div>
+    <div class="indx_source_share_holder">
+        <div data-name="share_icq" class="indx_source_share">Отправить в ICQ!</div>
+    </div>
+
 </div>
+
+<div class="indx_item_title_holder">
+{{ _title }}
+</div>
+
+
+{{#processedImage}}
+<div class="indx_item_pic_holder">
+    <img class="indx_item_pic" src="{{processedImage}}"/>
+</div>
+{{/processedImage}}
+
+
+{{#_images}}
+    <img class="indx_item_pic" src="https://image.indexisto.com/download/{{.}}_w1024"/>
+{{/_images}}
+
+
+{{#_imagesGif}}
+    <img class="indx_item_pic" src="https://image.indexisto.com/download/{{.}}_"/>
+{{/_imagesGif}}
+
+
+<div class="indx_item_desc">
+    {{ _title }}
+</div>
+
+<div class="indx_item_more_holder">
+<img data-name="show_more" class="indx_item_more" src="i_more.png"/>
+</div>
+<div data-name="more_holder" class="indx_item_more_content_holder">
+
+</div>
+
+
+
+
+</div>
+
+
 </script>
 
 
 <script id="indx_header_template" type="x-tmpl-mustache">
-<img id="indx_header_logo" src="logo.png">
-<img id="indx_header_reload" src="reload.png">
+<img id="indx_header_back" src="i_back.png">
+<img id="indx_header_logo" src="i_logo.png">
+<img id="indx_header_preloader" src="i_preloader.gif">
+<img id="indx_header_reload" src="i_reload.png">
+<div id="indx_play_button"><img id="indx_header_play_logo" src="i_play.png"><div id="indx_play_button_text">Скачать наше приложение!</div></div>
+
+
 </script>
 
-sdsd
-<div class="testclass" style="width:100px;height:100px"></div>
+<div id="indx_footer">
 
+    <img id="indx_footer_preloader" src="i_preloader_2.gif">
+
+</div>
 </body>
 </html>
