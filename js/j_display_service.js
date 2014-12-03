@@ -30,8 +30,8 @@ function indxHaveFeedData() {
     var feedId = feedsProvider[0].id;
     var articlesFeed = articleFeedsProvider[feedId];
     console.log("indxHaveFeedData articlesFeed=" + articlesFeed);
-    var startPos = curPage*3;
-    var endPos = curPage*3 + 3;
+    var startPos = curPage*PAGE_SIZE;
+    var endPos = curPage*PAGE_SIZE + PAGE_SIZE;
 
     console.log("curPage="+ curPage+" startPos="+startPos + " endPos="+endPos + " articlesProvider.length="+articlesFeed.length);
     if  (endPos>articlesFeed.length) {
@@ -220,15 +220,17 @@ function FeedItemRenderer(aid) {
 
     var processedImage;
     if (this.articleModel._image!==undefined) {
-        processedImage = "https://image.indexisto.com/download/" + this.articleModel._image + "_w1024";
+        processedImage = imageStorePath + this.articleModel._image + "_w1024";
         this.articleModel.processedImage = processedImage;
     }
     if (this.articleModel._imageGif!==undefined) {
-        processedImage = "https://image.indexisto.com/download/" + this.articleModel._imageGif + "_";
+        processedImage = imageStorePath + this.articleModel._imageGif + "_";
         this.articleModel.processedImage = processedImage;
     }
 
     console.log("FeedItemRenderer timeStr=" + timeStr);
+
+    this.articleModel.imageStorePath = imageStorePath;
 
     this.rendered = Mustache.render(template, this.articleModel);
 
@@ -260,9 +262,9 @@ function FeedItemRenderer(aid) {
                 if (bodyJSON.name === "img") {
 
                     if (bodyJSON.type === "gif") {
-                        more = more +  "<img class=\"indx_item_pic_body\" src=\"https://image.indexisto.com/download/" + bodyJSON.src + "_\"/ >";
+                        more = more +  "<img class=\"indx_item_pic_body\" src=\""+ imageStorePath + bodyJSON.src + "_\"/ >";
                     } else {
-                        more = more +  "<img class=\"indx_item_pic_body\" src=\"https://image.indexisto.com/download/" + bodyJSON.src + "_w1024\"/ >";
+                        more = more +  "<img class=\"indx_item_pic_body\" src=\""+imageStorePath + bodyJSON.src + "_w1024\"/ >";
                     }
 
                 }

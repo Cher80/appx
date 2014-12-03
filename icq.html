@@ -37,7 +37,7 @@
 
 <script id="indx_item_template" type="x-tmpl-mustache">
 <div class="indx_source clearWrapper">
-    <div class="indx_source_pic_holder" ><img class="indx_source_pic" src="https://image.indexisto.com/download/{{sourceImg}}_sw64"/></div>
+    <div class="indx_source_pic_holder" ><img class="indx_source_pic" src="{{imageStorePath}}{{sourceImg}}_sw64"/></div>
     <div class="indx_source_explain_holder">
         <div class="indx_source_title">{{streamName}}</div>
         <div class="indx_source_time">{{timeStr}}</div>
@@ -61,12 +61,12 @@
 
 
 {{#_images}}
-    <img class="indx_item_pic" src="https://image.indexisto.com/download/{{.}}_w1024"/>
+    <img class="indx_item_pic" src="{{imageStorePath}}{{.}}_w1024"/>
 {{/_images}}
 
 
 {{#_imagesGif}}
-    <img class="indx_item_pic" src="https://image.indexisto.com/download/{{.}}_"/>
+    <img class="indx_item_pic" src="{{imageStorePath}}{{.}}_"/>
 {{/_imagesGif}}
 
 
@@ -102,7 +102,7 @@
 
 <div id="indx_footer">
 
-    <img id="indx_footer_preloader" src="i_preloader_2.gif">
+    <img id="indx_footer_preloader" src="img/i_preloader_2.gif">
 
 </div>
 </body>
