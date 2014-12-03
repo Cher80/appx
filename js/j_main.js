@@ -79,7 +79,7 @@ function getDataParam(paramName) {
 
 
 function indxOnInited() {
-    console.log("indxOnInited");
+	console.log("a> indxOnInited");
     var parmAid = getDataParam('aid');
     if (parmAid!==undefined) {
         oneArticleAid = parmAid;
@@ -87,7 +87,7 @@ function indxOnInited() {
         indxGetOneArticleData(oneArticleAid);
     } else {
         curPage = 0;
-        indxGetFeedData(feedsProvider[0].feedId, curPage);
+        indxGetFeedData(feedsProvider[0].id, curPage);
     }
 }
 
@@ -117,7 +117,7 @@ function startFunc() {
                 if (!nowLoading && !endReached) {
                     curPage = curPage + 1;
                     console.log("Now loading!!! curPage=" + curPage);
-                    indxGetFeedData("fdid1212", curPage);
+                    indxGetFeedData(feedsProvider[0].id, curPage);
                 }
             }
 

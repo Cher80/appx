@@ -3,33 +3,28 @@
 <head lang="en">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="indx_styles.css">
+    <link rel="stylesheet" type="text/css" href="style/indx_styles.css">
 
-    <script src=mustache.js></script>
-    <script src=zepto.js></script>
-    <script src=j_moment.js></script>
-    <script src=api.js></script>
-
-    <script src=j_main.js></script>
-    <script src=j_remote_service.js></script>
-    <script src=j_display_service.js></script>
-    <script src=j_dummy_data.js></script>
-
+    <script src="lib/mustache.js"></script>
+    <script src="lib/zepto.js"></script>
+    <script src="lib/pgwcookie.min.js"></script>
+    <script src="lib/api.js"></script>
+    
+    <script src="js/settings.js"></script>
+    <script src="js/j_moment.js"></script>
+    <script src="js/feed.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/service.js"></script>
+        
+    <script src="js/j_main.js"></script>
+    <script src="js/j_display_service.js"></script>
+    <script src="js/j_dummy_data.js"></script>
+    
     <script type="text/javascript">
-
         console.log("Indx starts, init global vars");
-
-
-
-
         //document.onload = startFunc();
         window.onload = startFunc;
-
-
-
-
     </script>
-
 
     <meta charset="UTF-8">
     <title>Indexisto ICQ app</title>
@@ -80,7 +75,7 @@
 </div>
 
 <div class="indx_item_more_holder">
-<img data-name="show_more" class="indx_item_more" src="i_more.png"/>
+<img data-name="show_more" class="indx_item_more" src="img/i_more.png"/>
 </div>
 <div data-name="more_holder" class="indx_item_more_content_holder">
 
@@ -96,11 +91,11 @@
 
 
 <script id="indx_header_template" type="x-tmpl-mustache">
-<img id="indx_header_back" src="i_back.png">
-<img id="indx_header_logo" src="i_logo.png">
-<img id="indx_header_preloader" src="i_preloader.gif">
-<img id="indx_header_reload" src="i_reload.png">
-<div id="indx_play_button"><img id="indx_header_play_logo" src="i_play.png"><div id="indx_play_button_text">Скачать наше приложение!</div></div>
+<img id="indx_header_back" src="img/i_back.png">
+<img id="indx_header_logo" src="img/i_logo.png">
+<img id="indx_header_preloader" src="img/i_preloader.gif">
+<img id="indx_header_reload" src="img/i_reload.png">
+<div id="indx_play_button"><img id="indx_header_play_logo" src="img/i_play.png"><div id="indx_play_button_text">Скачать наше приложение!</div></div>
 
 
 </script>

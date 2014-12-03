@@ -3,7 +3,7 @@ console.log("Loading j_display_service");
 
 function indxHaveOneArticleData() {
 
-    console.log("indxGetOneArticleData");
+    console.log("a> indxGetOneArticleData");
     //headerRenderer.setLoaded();
 
     $('#indx_items').empty();
@@ -19,7 +19,7 @@ function indxHaveOneArticleData() {
 }
 
 function indxHaveFeedData() {
-    console.log("indxHaveFeedData");
+    console.log("a> indxHaveFeedData");
     //headerRenderer.setLoaded();
 
     if (curPage===0) {
@@ -27,7 +27,7 @@ function indxHaveFeedData() {
     }
 
 
-    var feedId = feedsProvider[0].feedId;
+    var feedId = feedsProvider[0].id;
     var articlesFeed = articleFeedsProvider[feedId];
     console.log("indxHaveFeedData articlesFeed=" + articlesFeed);
     var startPos = curPage*3;
@@ -85,7 +85,7 @@ function HeaderRenderer() {
         $('#indx_items').empty();
         curPage = 0;
         endReached = false;
-        indxGetFeedData(feedsProvider[0].feedId, 0, 10, 9991);
+        indxGetFeedData(feedsProvider[0].id, 0, 10, 9991);
     });
 
     $(this.elHTML).on("click", "#indx_header_preloader", function (e) {
@@ -195,6 +195,7 @@ function FeedItemRenderer(aid) {
 
 
     this.articleModel = articlesProvider[aid];
+    console.log("articleModel " + this.articleModel);
     var self = this;
 
     //var timeStr = moment([2007, 0, 29]).fromNow();
