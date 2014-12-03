@@ -3,7 +3,7 @@ console.log("Loading j_display_service");
 
 function indxHaveOneArticleData() {
 
-    console.log("a> indxGetOneArticleData");
+    console.log("a> indxHaveOneArticleData");
     //headerRenderer.setLoaded();
 
     $('#indx_items').empty();
@@ -89,7 +89,10 @@ function HeaderRenderer() {
     });
 
     $(this.elHTML).on("click", "#indx_header_preloader", function (e) {
-
+        $('#indx_items').empty();
+        curPage = 0;
+        endReached = false;
+        indxGetFeedData(feedsProvider[0].id, 0, 10, 9991);
         //alert("indx_header_preloader");
     });
 
@@ -105,7 +108,7 @@ function HeaderRenderer() {
 
             curPage = 0;
             window.scrollTo(0, 0);
-            indxGetFeedData("fdid1212", curPage);
+            indxGetFeedData(feedsProvider[0].id, curPage);
         } else {
             mailru.app.back();
         }
@@ -116,7 +119,7 @@ function HeaderRenderer() {
         if (oneArticleAid.length>0) {
             oneArticleAid = "";
             curPage = 0;
-            indxGetFeedData("fdid1212", curPage);
+            indxGetFeedData(feedsProvider[0].id, curPage);
         } else {
             mailru.app.back();
         }

@@ -124,10 +124,4 @@ function startFunc() {
         }
     })
 
-
-
-
 }
-
-
-
