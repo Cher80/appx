@@ -100,6 +100,8 @@ function startFunc() {
     headerRenderer = new HeaderRenderer();
     $('#indx_header').append(headerRenderer.getDom());
 
+
+
     populateDummies();
 
     uin = getUrlParameter( window.location.search.substring(1),'uin');

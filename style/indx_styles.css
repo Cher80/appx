@@ -189,3 +189,29 @@ body {
     margin-top: 2px;
 }
 
+#indx_look_at_play {
+    margin-left: -60px;
+    padding-right: 9px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+#indx_look_at_play_logo {
+    float: left;
+    height: 60px;
+    margin-left: 63px;
+    width: auto;
+    margin-right: 2px;
+}
+
+#indx_look_at_play_texts {
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#indx_look_at_play_text_2 {
+    font-size: 10px;
+    color: #999999;
+    margin-top: 0px;
+}

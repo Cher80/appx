@@ -19,11 +19,25 @@
     <script src="js/j_main.js"></script>
     <script src="js/j_display_service.js"></script>
     <script src="js/j_dummy_data.js"></script>
-    
+
+
+
+
     <script type="text/javascript">
         console.log("Indx starts, init global vars");
         //document.onload = startFunc();
         window.onload = startFunc;
+    </script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-54298787-2', 'auto');
+        ga('send', 'pageview');
+
     </script>
 
     <meta charset="UTF-8">
@@ -95,7 +109,29 @@
 <img id="indx_header_logo" src="img/i_logo.png">
 <img id="indx_header_preloader" src="img/i_preloader.gif">
 <img id="indx_header_reload" src="img/i_reload.png">
+
+
+
+</script>
+
+<!--
 <div id="indx_play_button"><img id="indx_header_play_logo" src="img/i_play.png"><div id="indx_play_button_text">Скачать наше приложение!</div></div>
+
+-->
+
+<script id="indx_look_at_play_template" type="x-tmpl-mustache">
+
+
+<div id="indx_look_at_play" class="clearWrapper">
+
+
+    <img id="indx_look_at_play_logo" src="img/i_play.png">
+
+<div id="indx_look_at_play_texts">
+    <div id="indx_look_at_play_text">Ищите наше приложение <b>Indexisto</b> в <b>Google Play!</b></div>
+    <div id="indx_look_at_play_text_2">Еще больше картинок, смешных гифок и интересных статей!</div>
+</div>
+</div>
 
 
 </script>

@@ -50,6 +50,14 @@ function indxHaveFeedData() {
 
         $('#indx_items').append(itemRenderer.getDom());
     }
+
+
+    if (curPage===0) {
+        var template = $('#indx_look_at_play_template').html();
+        var rendered = Mustache.render(template);
+        $('#indx_items').append(rendered);
+    }
+
     console.log("indxHaveFeedData dataLoaded=" + curPage);
     dataLoaded();
     /*
@@ -97,9 +105,10 @@ function HeaderRenderer() {
     });
 
 
+    /*
     $(this.elHTML).on("click", "#indx_play_button", function (e) {
         gotoMarket();
-    });
+    });*/
 
 
     $(this.elHTML).on("click", "#indx_header_back", function (e) {
@@ -176,7 +185,7 @@ function sendMessage(aid,image, title,description) {
     params.image = image;
     params.text = description;
     var fall =
-    params.fallback = "Бухта радости: вам пришла картинка! " + image;
+    params.fallback = " лови картинку )) " + image;
     params.title = title;
     params.data = {"aid":aid};
 
