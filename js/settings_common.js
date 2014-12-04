@@ -1,2 +1,0 @@
-var PAGE_SIZE = 10;
-var AJAX_REQUEST_TIMEOUT = 700;

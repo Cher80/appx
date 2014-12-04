@@ -52,11 +52,11 @@ function indxHaveFeedData() {
     }
 
 
-    if (curPage===0) {
+    //if (curPage===0) {
         var template = $('#indx_look_at_play_template').html();
         var rendered = Mustache.render(template);
         $('#indx_items').append(rendered);
-    }
+    //}
 
     console.log("indxHaveFeedData dataLoaded=" + curPage);
     dataLoaded();

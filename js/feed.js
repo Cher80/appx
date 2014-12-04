@@ -1,26 +1,73 @@
 function adoptDocument(doc) {
 	try {
-		var image = doc._image;
-		var images = doc._images;
-		
-		// delete gallery img if it is the same
-		var imagesNew = [];
-		if (image != undefined && images != undefined) {
-			
-		    for (var z = 0; z < images.length; z++) {
-		        if (images[z] === image) {
-		        } else {
-		        	imagesNew.push(images[z]);
-		        }
-		    }
-		}
-		doc._images = imagesNew;
-		
+		// presented JSON correction
 		var bodyPresentedJson = doc._bodyPresentedJson;
 		bodyPresentedJson = bodyPresentedJson.substring(1);
-		doc._bodyPresentedJson = $.parseJSON(bodyPresentedJson);
+		doc._bodyPresentedJson = $.parseJSON(bodyPresentedJson);		
+		
+		// images correction
+		var image = doc._imageGif;
+		if (image == undefined) image = doc._image;
+		
+		var images = doc._images;
+		var imagesGif = doc._imagesGif;
+		var bodyParts = doc._bodyPresentedJson.body;
+		var arr = [];
+		var bodyPartsNew = [];
+		var imagesNew = [];
+		var imagesGifNew = [];
+
+		//console.log("v> ----------- image: " + image);
+		if (image != undefined) {
+			
+			// bodyPresented
+			if (bodyParts.length > 0) {
+				for (var i = 0; i < bodyParts.length; i++) {
+					if (bodyParts[i].name == 'img' && bodyParts[i].src == image) {
+						//console.log("v> - b same img: " + bodyParts[i].src);
+					} else {
+						bodyPartsNew.push(bodyParts[i]);
+					}
+				}
+			}
+			doc._bodyPresentedJson.body = bodyPartsNew;			
+			
+			// jpg
+			if(images != undefined) {
+				arr = [];
+				if (!$.isArray(images)) {
+					arr.push(images);
+				} else {
+					arr = images;
+				}					
+			    for (var z = 0; z < arr.length; z++) {
+			        if (arr[z] == image) {
+			        } else {
+			        	imagesNew.push(arr[z]);
+			        }
+			    }
+			}
+			doc._images = imagesNew;
+			
+			//gif
+			if(imagesGif != undefined) {
+				arr = [];
+				if (!$.isArray(imagesGif)) {
+					arr.push(imagesGif);
+				} else {
+					arr = imagesGif;
+				}				
+			    for (var x = 0; x < arr.length; x++) {
+			        if (arr[x] == image) {
+			        } else {
+			        	imagesGifNew.push(arr[x]);
+			        }
+			    }
+			}
+			doc._imagesGif = imagesGifNew;
+		}
 	} catch (e) {
-		//alert(e);
+		alert(e);
 	}
 	return doc;
 }
@@ -147,8 +194,8 @@ function putFeed(templId) {
 			 +'         {   '
 			 +'           "status": "FEED_ENABLED",                     '
 			 +'           "query": {                                    ' 
-			 +'             "templateId": "' + templId + '",   		'
-			 +'             "criteriaIds": ["53e4d24e975a771e6168e95f"] '
+			 +'             "templateId": "' + templId + '"		   		'
+			 //+'             "criteriaIds": ["53e4d24e975a771e6168e95f"] '
 			 +'           } '
 			 +'         } '
 			 +'       ]  '

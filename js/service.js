@@ -24,7 +24,7 @@ function onAuthenticated() {
 
 function onHasNoFeed() {
 	console.log("v> has no feeds, creating...");
-	putFeed(TEMPLATE_ID);
+	putFeed(templateId);
 }
 
 function onFeedPrepared() {
