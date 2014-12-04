@@ -241,12 +241,19 @@ function FeedItemRenderer(aid) {
     this.elHTML = document.createElement('div');
     this.elHTML.innerHTML = this.rendered;
     this.elHTML.setAttribute('class', 'feed_item_render');
-    console.log("a> ------");
-    console.log("a> id: " + this.articleModel._id);
-    console.log("a> descr: " + this.articleModel._description);
-    console.log("a> body: " + this.articleModel._body);
-    console.log("a> body: " + this.articleModel._bodyPresentedJson);
-    //$("[data-name='show_more']").hide();
+
+    var desc = this.articleModel._description;
+    var body = this.articleModel._body;
+    if (desc != undefined) desc = desc.trim();
+    if (body != undefined) body = body.trim();
+    if (body == undefined || body == '') {
+    	$(this.elHTML).find("[data-name='show_more']").hide();
+    } else {
+    	if (body == desc && this.articleModel._bodyPresentedJson.body.length < 2) {
+    		$(this.elHTML).find("[data-name='show_more']").hide();
+    	}
+    }
+
     
     //this.elHTML = $(this.rendered);
     //this.elHTML = document.createElement(this.rendered);

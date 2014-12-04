@@ -13,7 +13,7 @@ function indxDoInit(uid) {
 
 function onAuthenticationError() {
 	console.log("v> ERROR: can not authenticate");
-	alert('ERROR: can not authenticate');
+	//alert('ERROR: can not authenticate');
 }
 
 function onAuthenticated() {
@@ -24,8 +24,7 @@ function onAuthenticated() {
 
 function onHasNoFeed() {
 	console.log("v> has no feeds, creating...");
-	var templateId = "53eccbba975ad62d850d015c";
-	putFeed(templateId);
+	putFeed(TEMPLATE_ID);
 }
 
 function onFeedPrepared() {
@@ -35,7 +34,7 @@ function onFeedPrepared() {
 
 function onFeedPrepareError() {
 	console.log("v> ERROR: can not prepare feed");
-	alert('ERROR: can not prepare feed');
+	//alert('ERROR: can not prepare feed');
 }
 
 
@@ -53,7 +52,7 @@ function onFeedDataPrepared() {
 
 function onFeedDataPrepareError() {
 	console.log("v> ERROR: can not prepare feed data");
-	alert('ERROR: can not prepare feed data');
+	//alert('ERROR: can not prepare feed data');
 }
 
 

@@ -1,3 +1,30 @@
+function adoptDocument(doc) {
+	try {
+		var image = doc._image;
+		var images = doc._images;
+		
+		// delete gallery img if it is the same
+		var imagesNew = [];
+		if (image != undefined && images != undefined) {
+			
+		    for (var z = 0; z < images.length; z++) {
+		        if (images[z] === image) {
+		        } else {
+		        	imagesNew.push(images[z]);
+		        }
+		    }
+		}
+		doc._images = imagesNew;
+		
+		var bodyPresentedJson = doc._bodyPresentedJson;
+		bodyPresentedJson = bodyPresentedJson.substring(1);
+		doc._bodyPresentedJson = $.parseJSON(bodyPresentedJson);
+	} catch (e) {
+		//alert(e);
+	}
+	return doc;
+}
+
 function saveFeedData(data, feedId) {
 	var feedDocsArr = articleFeedsProvider[feedId];
 	if (feedDocsArr == undefined) feedDocsArr = [];
@@ -8,41 +35,7 @@ function saveFeedData(data, feedId) {
 			var doc = docs[i];
 			//console.log("v> id: " + doc.id);
 			feedDocsArr.push(docs[i].id);
-			
-			var docTmp = docs[i];
-			try {
-				var image = docTmp._image;
-				var images = docTmp._images;
-				
-				//LOG
-				/*console.log("====================================");
-				console.log("img> " + image);
-				console.log("------------------------------------");
-				if (images != undefined) {
-					for (var j = 0; j < images.length; j++) {
-						console.log("images> " + images[j]);
-					}
-				}*/
-				
-				// delete if contains
-				var imagesNew = [];
-				if (image != undefined && images != undefined) {
-					
-				    for (var z = 0; z < images.length; z++) {
-				        if (images[z] === image) {
-				        } else {
-				        	imagesNew.push(images[z]);
-				        }
-				    }
-				}
-				docTmp._images = imagesNew;
-				
-				var bodyPresentedJson = docTmp._bodyPresentedJson;
-				bodyPresentedJson = bodyPresentedJson.substring(1);
-				docTmp._bodyPresentedJson = $.parseJSON(bodyPresentedJson);
-			} catch (e) {
-				//alert(e);
-			}
+			var docTmp = adoptDocument(docs[i]);
 			articlesProvider[docs[i].id] = docTmp;
 		}
 		articleFeedsProvider[feedId] = feedDocsArr;
@@ -69,12 +62,7 @@ function saveDocumentData(data) {
 	var docs = data.docs;
 	if (docs != undefined) {
 		for (var i = 0; i < docs.length; i++) {
-			var docTmp = docs[i];
-			try {
-				var bodyPresentedJson = docTmp._bodyPresentedJson;
-				bodyPresentedJson = bodyPresentedJson.substring(1);
-				docTmp._bodyPresentedJson = $.parseJSON(bodyPresentedJson);
-			} catch (e) {}
+			var docTmp = adoptDocument(docs[i]);
 			articlesProvider[docs[i].id] = docTmp;
 		}
 	}
@@ -149,7 +137,7 @@ function saveFeeds(feeds) {
 	}	
 }
 
-function putFeed(templateId) {
+function putFeed(templId) {
 	$.ajax({
 		  type: 'PUT',
 		  url: apiPath + '1_0/feeds' + 
@@ -159,7 +147,7 @@ function putFeed(templateId) {
 			 +'         {   '
 			 +'           "status": "FEED_ENABLED",                     '
 			 +'           "query": {                                    ' 
-			 +'             "templateId": "' + templateId + '",   '
+			 +'             "templateId": "' + templId + '",   		'
 			 +'             "criteriaIds": ["53e4d24e975a771e6168e95f"] '
 			 +'           } '
 			 +'         } '
