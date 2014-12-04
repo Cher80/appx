@@ -241,7 +241,13 @@ function FeedItemRenderer(aid) {
     this.elHTML = document.createElement('div');
     this.elHTML.innerHTML = this.rendered;
     this.elHTML.setAttribute('class', 'feed_item_render');
-
+    console.log("a> ------");
+    console.log("a> id: " + this.articleModel._id);
+    console.log("a> descr: " + this.articleModel._description);
+    console.log("a> body: " + this.articleModel._body);
+    console.log("a> body: " + this.articleModel._bodyPresentedJson);
+    //$("[data-name='show_more']").hide();
+    
     //this.elHTML = $(this.rendered);
     //this.elHTML = document.createElement(this.rendered);
     // console.log("FeedItemRenderer2 rendered"+this.elHTML);

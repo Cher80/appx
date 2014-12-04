@@ -211,7 +211,7 @@ function getFeeds() {
 function getDocument(docId) {
 	$.ajax({
 	  type: 'GET',
-	  url: apiPath + '/1_0/docs/' + docId + 
+	  url: apiPath + '1_0/docs/' + docId + 
 	  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey(),
 	  data: '',
 	  dataType: 'json',
