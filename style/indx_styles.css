@@ -155,6 +155,11 @@ body {
 
 }
 
+#indx_footer_freespace {
+    width: auto;
+    height: 130px;
+}
+
 .indx_item_more_content_holder a {
     text-decoration: none;
     color: inherit;
