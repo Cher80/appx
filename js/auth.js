@@ -35,10 +35,10 @@ function saveSession(session) {
 function login(clientId) {
 	$.ajax({
 		  type: 'POST',
-		  url: '../api/1_0/clients/' + clientId + '/login',
+		  url: apiPath + '1_0/clients/' + clientId + '/login',
 		  data: '',
 		  dataType: 'json',
-		  timeout: 300,
+		  timeout: AJAX_REQUEST_TIMEOUT,
 		  context: $('body'),
 		  success: function(data) {
 			  var session = data.session;
@@ -60,10 +60,10 @@ function login(clientId) {
 function register(name) {
 	$.ajax({
 		  type: 'POST',
-		  url: 'http://127.0.0.1/api/1_0/clients/register',
+		  url: apiPath + '1_0/clients/register',
 		  data: '{ name: "' + name + '" }',
 		  dataType: 'json',
-		  timeout: 300,
+		  timeout: AJAX_REQUEST_TIMEOUT,
 		  context: $('body'),
 		  success: function(data) {
 			  var session = data.session;
@@ -79,5 +79,5 @@ function register(name) {
 		  error: function(xhr, type){
 			  onAuthenticationError();
 		  }
-	});	
+	});
 }

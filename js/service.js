@@ -12,7 +12,7 @@ function indxDoInit(uid) {
 }
 
 function onAuthenticationError() {
-	console.log("v> ERROR: can not authenticat");
+	console.log("v> ERROR: can not authenticate");
 	alert('ERROR: can not authenticate');
 }
 
@@ -56,9 +56,20 @@ function onFeedDataPrepareError() {
 	alert('ERROR: can not prepare feed data');
 }
 
+
 //3
-function indxGetOneArticleData(oneArticleAid) {
-    console.log("indxGetOneArticleData oneArticleAid="+oneArticleAid);
+function indxGetOneArticleData(aid) {
+	console.log("v> one article data requested: " + aid);
     nowLoadingData();
-    setTimeout(indxHaveOneArticleData, 300, 12);
+    getDocument(aid);
+}
+
+function onDocumentDataPrepared(aid) {
+	console.log("v> document data prepared");
+	setTimeout(indxHaveOneArticleData, 300, 12);
+}
+
+function onDocumentDataError(aid) {
+	console.log("v> ERROR: can not prepare document data");
+	alert('ERROR: can not prepare document data');
 }
