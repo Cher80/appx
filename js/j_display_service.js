@@ -171,10 +171,12 @@ function handleBack() {
 }
 
 
-function sendMessage(aid,image,title,description) {
+function sendMessage(aid,image, title,description) {
     var params = {};
     params.image = image;
     params.text = description;
+    var fall =
+    params.fallback = "Бухта радости: вам пришла картинка! " + image;
     params.title = title;
     params.data = {"aid":aid};
 
