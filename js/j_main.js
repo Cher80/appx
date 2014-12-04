@@ -13,7 +13,7 @@ var oneArticleAid = "";
 var curPage;
 var nowLoading = false;
 var endReached = false;
-//file:///Users/auglev/IdeaProjects/icqindexisto/icq.html?uin=30000583&data=aid%3Dasdsa231kkkaa
+//file:///Users/auglev/IdeaProjects/icqindexisto/icq.html?uin=30000583&data=aid%3DarticleId
 
 function getUrlParameter(sPageURL,sParam)
 {
