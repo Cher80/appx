@@ -83,7 +83,7 @@ function indxHaveFeedData() {
 
 function showFullScreen(articleModel, imageSrc) {
     console.log("Indx showFullScreen");
-    var fullScreen =  new FullScreenRenderer(articleModel,imageSrc);
+    fullScreen =  new FullScreenRenderer(articleModel,imageSrc);
 
     $('body').append(fullScreen.getDom());
     //$('#indx_full_screen_image').smartZoom();
@@ -95,20 +95,29 @@ function showFullScreen(articleModel, imageSrc) {
 function FullScreenRenderer(articleModel,imageSrc) {
     console.log("Indx FullScreenRenderer");
     var self = this;
+    nowImageFullScreen = true;
     var template = $('#indx_full_screen').html();
     this.rendered = Mustache.render(template);
     this.articleModel = articleModel;
     this.imageSrc = imageSrc;
     this.elHTML = document.createElement('div');
     this.elHTML.innerHTML = this.rendered;
-    var self = this;
+
     //console.log(this.elHTML);
     this.elHTML.setAttribute('id', 'indx_full_screen');
 
 
-    $('#indx_full_screen_image',this.elHTML).attr( "src",imageSrc );
+    $('#indx_full_screen_image',this.elHTML).attr( "src",this.imageSrc );
 
     //$('#indx_full_screen_image').panzoom();
+
+
+
+    this.needClear = function () {
+        console.log("Indx needClear");
+        nowImageFullScreen = false;
+        this.elHTML.remove();
+    }
 
 
     this.getDom = function () {
@@ -118,13 +127,14 @@ function FullScreenRenderer(articleModel,imageSrc) {
 
     $(this.elHTML).on("click", "#indx_full_close", function (e) {
         console.log("Indx remove");
-        self.elHTML.remove();
+        self.needClear();
     });
 
     $(this.elHTML).on("click", "#indx_full_share_icq", function (e) {
         console.log("Indx sendmess");
-        self.elHTML.remove();
-        sendMessage(self.aid,imageSrc,self.articleModel._title,self.articleModel._description);
+
+        self.needClear();
+        sendMessage(self.aid,self.imageSrc,self.articleModel._title,self.articleModel._description);
     });
 
 }

@@ -13,6 +13,8 @@ var oneArticleAid = "";
 var curPage;
 var nowLoading = false;
 var endReached = false;
+var nowImageFullScreen =false;
+var fullScreen;
 //file:///Users/auglev/IdeaProjects/icqindexisto/icq.html?uin=30000583&data=aid%3DarticleId
 
 function getUrlParameter(sPageURL,sParam)
@@ -128,7 +130,7 @@ function startFunc() {
     $('#xxx').on( "click",
         function(e) {
             //$('#xxx').smartZoom(optionsZoom);
-            showFullScreen(0,"http://s6.pikabu.ru/post_img/2014/12/05/7/1417773684_461879271.jpg");
+            showFullScreen(0,"http://vitamincm.com/wp-content/uploads/2011/08/close-running-iphone-apps.png");
         }
 
          );
@@ -142,6 +144,23 @@ function startFunc() {
         console.log("startFunc Have uin uin="+uin);
         indxDoInit(uin);
     }
+
+
+    mailru.app.back(function(e) {
+
+        if (nowImageFullScreen) {
+
+            if (fullScreen!==undefined) {
+
+                fullScreen.needClear();
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+        showFullScreen(0,"http://vitamincm.com/wp-content/uploads/2011/08/close-running-iphone-apps.png");
+    });
 
 
     $(window).on('scroll', function(){

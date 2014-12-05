@@ -3,6 +3,13 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: Helvetica,Tahoma,Arial,Helvetica,sans-serif;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #indx_header {
@@ -27,6 +34,14 @@ body {
     margin-top:6px;
     margin-bottom:4px;
 
+}
+
+.indx_source_share:hover, .indx_source_share:active,
+#indx_header_reload:hover, #indx_header_reload:active,
+#indx_header_preloader:hover, #indx_header_preloader:active,
+#indx_header_logo:hover, #indx_header_logo:active,
+#indx_header_back:hover, #indx_header_back:active {
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 #indx_header_back {
@@ -133,7 +148,7 @@ body {
     width: auto;
 }
 
-.indx_item_more_holder{
+#indx_item_more_holder{
     text-align: center;
 }
 
@@ -236,11 +251,14 @@ body {
 
 }
 
+#indx_full_close:hover, #indx_full_close:active {
+    background-color: rgba(99, 99, 99, 0.99);
+}
+
 #indx_full_screen_image {
     max-width: 100%;
     max-height: 100%;
-    left: 50%;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .indx_smart_zoom {
@@ -262,8 +280,12 @@ body {
     font-size: 14px;
     color: #FFFFFF;
     margin: 10px;
-    background-color: rgba(255, 255, 255, 0.14);
+    background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
+}
+
+#indx_full_share_icq:hover, #indx_full_share_icq:active {
+    background-color: rgba(99, 99, 99, 0.75);
 }
 
 #indx_full_share_icq_holder {
