@@ -18,6 +18,10 @@ function indxHaveOneArticleData() {
 
 }
 
+
+
+
+
 function indxHaveFeedData() {
     console.log("a> indxHaveFeedData");
     //headerRenderer.setLoaded();
@@ -76,6 +80,54 @@ function indxHaveFeedData() {
 
 }
 
+
+function showFullScreen(articleModel, imageSrc) {
+    console.log("Indx showFullScreen");
+    var fullScreen =  new FullScreenRenderer(articleModel,imageSrc);
+
+    $('body').append(fullScreen.getDom());
+    //$('#indx_full_screen_image').smartZoom();
+    $('#indx_full_screen_image').panzoom();
+
+}
+
+
+function FullScreenRenderer(articleModel,imageSrc) {
+    console.log("Indx FullScreenRenderer");
+    var self = this;
+    var template = $('#indx_full_screen').html();
+    this.rendered = Mustache.render(template);
+    this.articleModel = articleModel;
+    this.imageSrc = imageSrc;
+    this.elHTML = document.createElement('div');
+    this.elHTML.innerHTML = this.rendered;
+    var self = this;
+    //console.log(this.elHTML);
+    this.elHTML.setAttribute('id', 'indx_full_screen');
+
+
+    $('#indx_full_screen_image',this.elHTML).attr( "src",imageSrc );
+
+    //$('#indx_full_screen_image').panzoom();
+
+
+    this.getDom = function () {
+
+        return this.elHTML;
+    }
+
+    $(this.elHTML).on("click", "#indx_full_close", function (e) {
+        console.log("Indx remove");
+        self.elHTML.remove();
+    });
+
+    $(this.elHTML).on("click", "#indx_full_share_icq", function (e) {
+        console.log("Indx sendmess");
+        self.elHTML.remove();
+        sendMessage(self.aid,imageSrc,self.articleModel._title,self.articleModel._description);
+    });
+
+}
 
 function HeaderRenderer() {
     var template = $('#indx_header_template').html();
@@ -184,7 +236,7 @@ function sendMessage(aid,image, title,description) {
     var params = {};
     params.image = image;
     params.text = description;
-    var fall =
+    //var fall =
     params.fallback = " лови картинку )) " + image;
     params.title = title;
     params.data = {"aid":aid};
@@ -319,6 +371,15 @@ function FeedItemRenderer(aid) {
         //sendMessage("asda","ddd","vvv","mms");
 
     });
+
+
+    $(this.elHTML).on("click", 'img', function (e) {
+        console.log("show image!");
+        showFullScreen(self.articleModel,$(this).attr('src'));
+    });
+
+
+
 
     this.getDom = function () {
         return this.elHTML;

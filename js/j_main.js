@@ -94,6 +94,26 @@ function indxOnInited() {
 
 
 
+var optionsZoom = {'top' : '0', // zoom target container top position in pixel
+    'left' : '0', // zoom target container left position in pixel
+    'width' : '100%', // zoom target container width in pixel or in percent
+    'height' : '100%', // zoom target container height in pixel or in percent
+    'easing' : 'smartZoomEasing', // jquery easing function used when the browser doesn't support css transitions
+    'maxScale' : 3, // the max scale that will be applied on the zoom target
+    'dblClickMaxScale' : 1.8, // the max scale that will be applied on the zoom target on double click
+    'mouseEnabled' : true, // enable plugin mouse interaction
+    'scrollEnabled' : true, // enable plugin mouse wheel behviour
+    'dblClickEnabled' : true, // enable plugin mouse doubleClick behviour
+    'mouseMoveEnabled' : true, // enable plugin target drag behviour
+    'moveCursorEnabled' : true, // show moveCursor for drag
+    'touchEnabled' : true, // enable plugin touch interaction
+    'dblTapEnabled' : true, // enable plugin double tap behaviour
+    'pinchEnabled' : true, // enable zoom when user pinch on target
+    'touchMoveEnabled' : true, // enable target move via touch
+    'containerBackground' : '#FF00FF', // zoom target container background color (if containerClass is not set)
+    'containerClass' : 'indx_smart_zoom'// class to apply to zoom target container if you whant to change background or borders (don't change size or position via css)
+}
+
 function startFunc() {
     console.log("Indx window ready");
 
@@ -101,6 +121,19 @@ function startFunc() {
     $('#indx_header').append(headerRenderer.getDom());
 
 
+
+    function notify() {
+        alert( "clicked" );
+    }
+    $('#xxx').on( "click",
+        function(e) {
+            //$('#xxx').smartZoom(optionsZoom);
+            showFullScreen(0,"http://s6.pikabu.ru/post_img/2014/12/05/7/1417773684_461879271.jpg");
+        }
+
+         );
+
+    //$("#xxx" ).click();
 
     populateDummies();
 

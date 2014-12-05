@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="style/indx_styles.css">
 
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/e-smart-zoom-jquery.min.js"></script>
+    <script src="lib/jquery.panzoom.min.js"></script>
+
+
     <script src="lib/mustache.js"></script>
+    <!--
     <script src="lib/zepto.js"></script>
+    -->
+
+
     <script src="lib/pgwcookie.min.js"></script>
     <script src="lib/api.js"></script>
     
@@ -26,6 +35,10 @@
     <script type="text/javascript">
         console.log("Indx starts, init global vars");
         //document.onload = startFunc();
+       // $(document).ready(function() {
+         //   $("#xxx").smartZoom(); // start plugin behaviour
+       // });
+
         window.onload = startFunc;
     </script>
 
@@ -46,6 +59,8 @@
 <body>
 
 <div id="indx_header"></div>
+<img id="xxx" src="https://image.indexisto.com/download/dea7a57d09978bd240e2e4842d2e5edf_w1024"></img>
+
 <div id="indx_items"></div>
 
 
@@ -113,6 +128,24 @@
 
 
 </script>
+
+
+<script id="indx_full_screen" type="x-tmpl-mustache">
+
+
+<img id="indx_full_close" src="img/i_close.png"></img>
+<div id="indx_full_share_icq_holder">
+    <div id="indx_full_share_icq" class="indx_source_share">Отправить в ICQ!</div>
+</div>
+<div id="indx_full_screen_image_holder">
+    <img id="indx_full_screen_image"/>
+</div>
+
+
+</script>
+
+
+
 
 <!--
 <div id="indx_play_button"><img id="indx_header_play_logo" src="img/i_play.png"><div id="indx_play_button_text">Скачать наше приложение!</div></div>
