@@ -336,7 +336,7 @@ function FeedItemRenderer(aid) {
     //this.elHTML.addEventListener('click',function(e) {alert("Clicked")},false);
 
 
-    $(this.elHTML).on("click", '[data-name="show_more"]', function (e) {
+    $(this.elHTML).on("click", '#indx_item_more_holder', function (e) {
         //alert("show_more " + aid);
         if (!self.moreShowed) {
             self.moreShowed = true;
