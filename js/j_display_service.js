@@ -96,6 +96,7 @@ function FullScreenRenderer(articleModel,imageSrc) {
     console.log("Indx FullScreenRenderer");
     var self = this;
     nowImageFullScreen = true;
+    $('body').css("overflow","hidden");
     var template = $('#indx_full_screen').html();
     this.rendered = Mustache.render(template);
     this.articleModel = articleModel;
@@ -115,6 +116,7 @@ function FullScreenRenderer(articleModel,imageSrc) {
 
     this.needClear = function () {
         console.log("Indx needClear");
+        $('body').css("overflow","");
         nowImageFullScreen = false;
         this.elHTML.remove();
     }
@@ -351,9 +353,9 @@ function FeedItemRenderer(aid) {
                 if (bodyJSON.name === "img") {
 
                     if (bodyJSON.type === "gif") {
-                        more = more +  "<img class=\"indx_item_pic_body\" src=\""+ imageStorePath + bodyJSON.src + "_\"/ >";
+                        more = more +  "<img class=\"clickableImage indx_item_pic_body\" src=\""+ imageStorePath + bodyJSON.src + "_\"/ >";
                     } else {
-                        more = more +  "<img class=\"indx_item_pic_body\" src=\""+imageStorePath + bodyJSON.src + "_w1024\"/ >";
+                        more = more +  "<img class=\"clickableImage indx_item_pic_body\" src=\""+imageStorePath + bodyJSON.src + "_w1024\"/ >";
                     }
 
                 }
@@ -383,7 +385,7 @@ function FeedItemRenderer(aid) {
     });
 
 
-    $(this.elHTML).on("click", 'img', function (e) {
+    $(this.elHTML).on("click", '.clickableImage', function (e) {
         console.log("show image!");
         showFullScreen(self.articleModel,$(this).attr('src'));
     });

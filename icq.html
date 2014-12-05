@@ -60,8 +60,9 @@
 
 <div id="indx_header"></div>
 
+<!--
 <img id="xxx" src="https://image.indexisto.com/download/dea7a57d09978bd240e2e4842d2e5edf_w1024"></img>
-
+-->
 
 <div id="indx_items"></div>
 
@@ -86,18 +87,18 @@
 
 {{#processedImage}}
 <div class="indx_item_pic_holder">
-    <img class="indx_item_pic" src="{{processedImage}}"/>
+    <img class="clickableImage indx_item_pic" src="{{processedImage}}"/>
 </div>
 {{/processedImage}}
 
 
 {{#_images}}
-    <img class="indx_item_pic" src="{{imageStorePath}}{{.}}_w1024"/>
+    <img class="clickableImage indx_item_pic" src="{{imageStorePath}}{{.}}_w1024"/>
 {{/_images}}
 
 
 {{#_imagesGif}}
-    <img class="indx_item_pic" src="{{imageStorePath}}{{.}}_"/>
+    <img class="clickableImage indx_item_pic" src="{{imageStorePath}}{{.}}_"/>
 {{/_imagesGif}}
 
 
