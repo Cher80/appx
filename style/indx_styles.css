@@ -36,7 +36,10 @@ body {
 
 }
 
-.indx_source_share:hover, .indx_source_share:active,
+.indx_source_share:hover, .indx_source_share:active {
+    background-color: rgba(0, 192, 131, 0.25);
+}
+
 #indx_header_reload:hover, #indx_header_reload:active,
 #indx_header_preloader:hover, #indx_header_preloader:active,
 #indx_header_logo:hover, #indx_header_logo:active,
@@ -298,6 +301,8 @@ body {
 }
 
 #indx_full_screen_image_holder {
+
+    /*
     border: 0;
     position: absolute;
     z-index: 888;
@@ -305,5 +310,8 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+    */
     text-align: center;
+    vertical-align: middle;
+    display: table-cell;
 }

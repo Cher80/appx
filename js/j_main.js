@@ -130,7 +130,7 @@ function startFunc() {
     $('#xxx').on( "click",
         function(e) {
             //$('#xxx').smartZoom(optionsZoom);
-            showFullScreen(0,"http://vitamincm.com/wp-content/uploads/2011/08/close-running-iphone-apps.png");
+            showFullScreen(0,$('#xxx').attr('src'));
         }
 
          );

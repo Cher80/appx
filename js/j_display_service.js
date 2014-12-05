@@ -86,6 +86,9 @@ function showFullScreen(articleModel, imageSrc) {
     fullScreen =  new FullScreenRenderer(articleModel,imageSrc);
 
     $('body').append(fullScreen.getDom());
+    $('#indx_full_screen_image_holder',this.elHTML).width($('#indx_full_screen',this.elHTML).width());
+    $('#indx_full_screen_image_holder',this.elHTML).height($('#indx_full_screen',this.elHTML).height());
+
     //$('#indx_full_screen_image').smartZoom();
     $('#indx_full_screen_image').panzoom();
 
@@ -109,6 +112,9 @@ function FullScreenRenderer(articleModel,imageSrc) {
 
 
     $('#indx_full_screen_image',this.elHTML).attr( "src",this.imageSrc );
+
+
+
 
     //$('#indx_full_screen_image').panzoom();
 
@@ -249,7 +255,7 @@ function sendMessage(aid,image, title,description) {
     params.image = image;
     params.text = description;
     //var fall =
-    params.fallback = " лови картинку )) " + image;
+    params.fallback =  {text:" лови картинку )) " + image};
     params.title = title;
     params.data = {"aid":aid};
 
