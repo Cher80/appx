@@ -290,8 +290,8 @@ function FeedItemRenderer(aid) {
     try {
 
         //moment.locale('ru');
-        moment(this.articleModel._dateParsed).fromNow();
-        var timeStr =
+
+        var timeStr = moment(this.articleModel._dateParsed).fromNow();
         this.articleModel.timeStr = timeStr;
     } catch (e) {
 
