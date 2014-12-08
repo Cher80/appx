@@ -126,14 +126,28 @@ function startFunc() {
 
     moment.locale('ru');
 
-
     var toUinParam = getUrlParameter( window.location.search.substring(1),'ref');
     console.log("startFunc toUinParam="+toUinParam);
     if (toUinParam!==undefined) {
         console.log("startFunc !==undefined toUinParam="+toUinParam);
+
         if (toUinParam.indexOf('conversation') != -1) {
             console.log("startFunc have conversation");
             toUin = toUinParam.substring("conversation".length, toUinParam.length);
+            console.log("startFunc toUin="+toUin);
+        }
+
+
+        if (toUinParam.indexOf('sidebar') != -1) {
+            console.log("startFunc have sidebar");
+            toUin = toUinParam.substring("sidebar".length, toUinParam.length);
+            console.log("startFunc toUin="+toUin);
+        }
+
+
+        if (toUinParam.indexOf('chat') != -1) {
+            console.log("startFunc have chat");
+            toUin = toUinParam.substring("chat".length, toUinParam.length);
             console.log("startFunc toUin="+toUin);
         }
     }
