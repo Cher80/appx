@@ -142,7 +142,7 @@ function FullScreenRenderer(articleModel,imageSrc) {
         console.log("Indx sendmess");
 
         self.needClear();
-        sendMessage(self.aid,self.imageSrc,self.articleModel._title,self.articleModel._description);
+        sendMessage(self.articleModel._id,self.imageSrc,self.articleModel._title,self.articleModel._description);
     });
 
 }
@@ -255,6 +255,10 @@ function sendMessage(aid,image, title,description) {
     params.image = image;
     params.text = description;
     //var fall =
+    if (toUin!==undefined) {
+        params.uin = toUin;
+    }
+
     params.fallback =  {text:" лови картинку )) " + image};
     params.title = title;
     params.data = {"aid":aid};
@@ -284,7 +288,10 @@ function FeedItemRenderer(aid) {
 
     //var timeStr = moment([2007, 0, 29]).fromNow();
     try {
-        var timeStr = moment(this.articleModel._dateParsed).fromNow();
+
+        //moment.locale('ru');
+        moment(this.articleModel._dateParsed).fromNow();
+        var timeStr =
         this.articleModel.timeStr = timeStr;
     } catch (e) {
 

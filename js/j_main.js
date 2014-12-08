@@ -8,6 +8,7 @@ var articlesProvider;
 var domainsProvider;
 var streamsProvider;
 var uin;
+var toUin;
 
 var oneArticleAid = "";
 var curPage;
@@ -123,6 +124,20 @@ function startFunc() {
     $('#indx_header').append(headerRenderer.getDom());
 
 
+    moment.locale('ru');
+
+
+    var toUinParam = getUrlParameter( window.location.search.substring(1),'ref');
+    console.log("startFunc toUinParam="+toUinParam);
+    if (toUinParam!==undefined) {
+        console.log("startFunc !==undefined toUinParam="+toUinParam);
+        if (toUinParam.indexOf('conversation') != -1) {
+            console.log("startFunc have conversation");
+            toUin = toUinParam.substring("conversation".length, toUinParam.length);
+            console.log("startFunc toUin="+toUin);
+        }
+    }
+
 
     function notify() {
         alert( "clicked" );
@@ -144,6 +159,15 @@ function startFunc() {
         console.log("startFunc Have uin uin="+uin);
         indxDoInit(uin);
     }
+
+
+
+
+
+    //console.log(moment([2007, 0, 29]).fromNow());
+
+
+
 
 
     mailru.app.back(function(e) {
