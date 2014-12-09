@@ -315,3 +315,8 @@ body {
     vertical-align: middle;
     display: table-cell;
 }
+
+
+#indx_header_container {
+    float: left;
+}

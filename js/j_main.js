@@ -131,11 +131,13 @@ function startFunc() {
     if (toUinParam!==undefined) {
         console.log("startFunc !==undefined toUinParam="+toUinParam);
 
+        /*
         if (toUinParam.indexOf('conversation') != -1) {
             console.log("startFunc have conversation");
             toUin = toUinParam.substring("conversation".length, toUinParam.length);
             console.log("startFunc toUin="+toUin);
         }
+        */
 
 
         if (toUinParam.indexOf('sidebar') != -1) {
@@ -145,11 +147,13 @@ function startFunc() {
         }
 
 
+        /*
         if (toUinParam.indexOf('chat') != -1) {
             console.log("startFunc have chat");
             toUin = toUinParam.substring("chat".length, toUinParam.length);
             console.log("startFunc toUin="+toUin);
         }
+        */
     }
 
 
@@ -208,6 +212,7 @@ function startFunc() {
             if (oneArticleAid.length=== 0) {
                 if (!nowLoading && !endReached) {
                     curPage = curPage + 1;
+                    ga('send', 'event', 'ui', 'Next page loading');
                     console.log("Now loading!!! curPage=" + curPage);
                     indxGetFeedData(feedsProvider[0].id, curPage);
                 }

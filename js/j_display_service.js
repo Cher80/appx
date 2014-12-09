@@ -15,6 +15,8 @@ function indxHaveOneArticleData() {
     //$('#indx_footer').show();
     //nowLoading = false;
     dataLoaded();
+    ga('send', 'event', 'ui', 'One article loaded');
+
 
 }
 
@@ -64,6 +66,9 @@ function indxHaveFeedData() {
 
     console.log("indxHaveFeedData dataLoaded=" + curPage);
     dataLoaded();
+
+    ga('send', 'event', 'ui', 'Feed page loaded');
+
     /*
     $.each(articlesFeed, function (i, aid) {
         console.log("aid" + aid);
@@ -91,6 +96,8 @@ function showFullScreen(articleModel, imageSrc) {
 
     //$('#indx_full_screen_image').smartZoom();
     $('#indx_full_screen_image').panzoom();
+
+    ga('send', 'event', 'ui', 'Image in full screen');
 
 }
 
@@ -140,7 +147,7 @@ function FullScreenRenderer(articleModel,imageSrc) {
 
     $(this.elHTML).on("click", "#indx_full_share_icq", function (e) {
         console.log("Indx sendmess");
-
+        ga('send', 'event', 'ui', 'Share clicked in full screen image');
         self.needClear();
         sendMessage(self.articleModel._id,self.imageSrc,self.articleModel._title,self.articleModel._description);
     });
@@ -160,6 +167,7 @@ function HeaderRenderer() {
 
 
     $(this.elHTML).on("click", "#indx_header_reload", function (e) {
+        ga('send', 'event', 'ui', 'Reload clicked');
         $('#indx_items').empty();
         curPage = 0;
         endReached = false;
@@ -167,6 +175,7 @@ function HeaderRenderer() {
     });
 
     $(this.elHTML).on("click", "#indx_header_preloader", function (e) {
+        ga('send', 'event', 'ui', 'Preloader clicked');
         $('#indx_items').empty();
         curPage = 0;
         endReached = false;
@@ -181,7 +190,9 @@ function HeaderRenderer() {
     });*/
 
 
+    /*
     $(this.elHTML).on("click", "#indx_header_back", function (e) {
+        ga('send', 'event', 'ui', 'Back arrow clicked');
         if (oneArticleAid.length>0) {
             oneArticleAid = "";
 
@@ -195,6 +206,7 @@ function HeaderRenderer() {
 
 
     $(this.elHTML).on("click", "#indx_header_logo", function (e) {
+        ga('send', 'event', 'ui', 'Logo clicked');
         if (oneArticleAid.length>0) {
             oneArticleAid = "";
             curPage = 0;
@@ -203,7 +215,28 @@ function HeaderRenderer() {
             mailru.app.back();
         }
 
+
+    });*/
+
+    $(this.elHTML).on("click", "#indx_header_container", function (e) {
+
+        console.log("Indx back go");
+        ga('send', 'event', 'ui', 'Back clicked');
+
+        if (oneArticleAid.length>0) {
+            oneArticleAid = "";
+
+            curPage = 0;
+            window.scrollTo(0, 0);
+            indxGetFeedData(feedsProvider[0].id, curPage);
+        } else {
+            mailru.app.back();
+        }
     });
+
+
+
+
 
 
 
@@ -251,6 +284,7 @@ function handleBack() {
 
 
 function sendMessage(aid,image, title,description) {
+    ga('send', 'event', 'ui', 'Send message',title + ' '+ image);
     var params = {};
     params.image = image;
     params.text = description;
@@ -351,6 +385,7 @@ function FeedItemRenderer(aid) {
 
     $(this.elHTML).on("click", '#indx_item_more_holder', function (e) {
         //alert("show_more " + aid);
+        ga('send', 'event', 'ui', 'Show more clicked');
         if (!self.moreShowed) {
             self.moreShowed = true;
 
@@ -392,6 +427,7 @@ function FeedItemRenderer(aid) {
 
     $(this.elHTML).on("click", '[data-name="share_icq"]', function (e) {
         console.log("share!");
+        ga('send', 'event', 'ui', 'Share clicked in feed item');
         sendMessage(self.aid,self.articleModel.processedImage,self.articleModel._title,self.articleModel._description);
         //sendMessage("asda","ddd","vvv","mms");
 
