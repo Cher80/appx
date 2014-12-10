@@ -117,8 +117,18 @@ var optionsZoom = {'top' : '0', // zoom target container top position in pixel
     'containerClass' : 'indx_smart_zoom'// class to apply to zoom target container if you whant to change background or borders (don't change size or position via css)
 }
 
+
+function bindHover() {
+    $('.hover').bind('touchstart touchend', function(e) {
+        //e.preventDefault();
+        $(this).toggleClass('hover_effect');
+    });
+}
+
 function startFunc() {
     console.log("Indx window ready");
+
+
 
     headerRenderer = new HeaderRenderer();
     $('#indx_header').append(headerRenderer.getDom());
@@ -221,6 +231,7 @@ function startFunc() {
             }
 
         }
-    })
+    });
+    bindHover();
 
 }

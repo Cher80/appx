@@ -15,6 +15,7 @@ function indxHaveOneArticleData() {
     //$('#indx_footer').show();
     //nowLoading = false;
     dataLoaded();
+    bindHover();
     ga('send', 'event', 'ui', 'One article loaded');
 
 
@@ -63,7 +64,7 @@ function indxHaveFeedData() {
 
     console.log("indxHaveFeedData dataLoaded=" + curPage);
     dataLoaded();
-
+    bindHover();
     ga('send', 'event', 'ui', 'Feed page loaded');
 
     /*
@@ -119,7 +120,10 @@ function ErrorRenderer() {
     var self = this;
     nowImageFullScreen = true;
     $('body').css("overflow", "hidden");
+    $('body').css("position", "relative");
     $('html').css("overflow", "hidden");
+
+
     var template = $('#indx_error_screen').html();
     this.rendered = Mustache.render(template);
 
@@ -137,6 +141,7 @@ function ErrorRenderer() {
     this.needClear = function () {
         console.log("Indx needClear");
         $('body').css("overflow", "");
+        $('body').css("position", "");
         $('html').css("overflow", "");
         nowImageFullScreen = false;
         this.elHTML.remove();
