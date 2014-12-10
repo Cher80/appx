@@ -293,7 +293,7 @@ function sendMessage(aid,image, title,description) {
         params.uin = toUin;
     }
 
-    params.fallback =  {text:" Р»РѕРІРё РєР°СЂС‚РёРЅРєСѓ )) " + image};
+    params.fallback =  {text:" Лови картинку )) " + image};
     params.title = title;
     params.data = {"aid":aid};
 

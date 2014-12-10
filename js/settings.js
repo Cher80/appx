@@ -1,5 +1,5 @@
 var PAGE_SIZE = 10;
-var AJAX_REQUEST_TIMEOUT = 700;
+var AJAX_REQUEST_TIMEOUT = 3000;
 
 // prod
 var PROD_IMAGE_STORE_PATH = "https://image.indexisto.com/download/";
