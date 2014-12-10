@@ -24,32 +24,25 @@ body {
 
 #header_container {
     background-color: #00c083;
-    height: 42px;
+    height: 50px;
 }
 
 #indx_header_logo {
     float: left;
-    height: 30px;
+    height: 38px;
+    line-height: 38px;
     width: auto;
     margin-top:6px;
     margin-bottom:4px;
+    margin-left:4px;
+    margin-right:4px;
+    color:#ffffff;
 
-}
-
-.indx_source_share:hover {
-    background-color: rgba(0, 192, 131, 0.25);
-}
-
-#indx_header_reload:hover,
-#indx_header_preloader:hover,
-#indx_header_logo:hover,
-#indx_header_back:hover {
-    background-color: rgba(255, 255, 255, 0.25);
 }
 
 #indx_header_back {
     float: left;
-    height: 30px;
+    height: 38px;
     width: auto;
     margin-top:6px;
     margin-left:4px;
@@ -59,7 +52,7 @@ body {
 
 #indx_header_reload,#indx_header_preloader {
     float: right;
-    height: 30px;
+    height: 38px;
     width: auto;
     margin-top:6px;
     margin-left:4px;
@@ -254,9 +247,7 @@ body {
 
 }
 
-#indx_full_close:hover {
-    background-color: rgba(99, 99, 99, 0.99);
-}
+
 
 #indx_full_screen_image {
     max-width: 100%;
@@ -319,4 +310,65 @@ body {
 
 #indx_header_container {
     float: left;
+    height: 50px;
 }
+
+
+.hover {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+#indx_header_container_loaders {
+    float:right;
+    height: 50px;
+}
+
+#indx_header_container.hover_effect,
+#indx_header_container_loaders.hover_effect,
+.indx_item_more.hover_effect,
+.indx_source_share.hover_effect,
+#indx_full_close.hover_effect,
+#indx_full_share_icq.hover_effect {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+
+#indx_error_screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.78);
+    color: #FFFFFF;
+
+}
+
+#indx_error_screen_container
+{
+    text-align: center;
+    width: 190px;
+    height: 149px;
+    font-size: 12px;
+    left: 50%;
+    top: 50%;
+    margin-left: -95px;
+    margin-top: -34px;
+    position: absolute;
+}
+
+#indx_error_screen img {
+    width: 80px;
+    height: 80px;
+    margin-left: 50px;
+    margin-top: 13px;
+    clear: both;
+    display: block;
+}
+
+
+
+
+

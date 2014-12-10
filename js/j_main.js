@@ -160,13 +160,15 @@ function startFunc() {
     function notify() {
         alert( "clicked" );
     }
+
+    /*
     $('#xxx').on( "click",
         function(e) {
-            //$('#xxx').smartZoom(optionsZoom);
-            showFullScreen(0,$('#xxx').attr('src'));
+        //showFullScreen(0,$('#xxx').attr('src'));
+            showErrorScreen();
         }
-
          );
+         */
 
     //$("#xxx" ).click();
 

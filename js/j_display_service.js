@@ -21,14 +21,11 @@ function indxHaveOneArticleData() {
 }
 
 
-
-
-
 function indxHaveFeedData() {
     console.log("a> indxHaveFeedData");
     //headerRenderer.setLoaded();
 
-    if (curPage===0) {
+    if (curPage === 0) {
         $('#indx_items').empty();
     }
 
@@ -36,21 +33,21 @@ function indxHaveFeedData() {
     var feedId = feedsProvider[0].id;
     var articlesFeed = articleFeedsProvider[feedId];
     console.log("indxHaveFeedData articlesFeed=" + articlesFeed);
-    var startPos = curPage*PAGE_SIZE;
-    var endPos = curPage*PAGE_SIZE + PAGE_SIZE;
+    var startPos = curPage * PAGE_SIZE;
+    var endPos = curPage * PAGE_SIZE + PAGE_SIZE;
 
-    console.log("curPage="+ curPage+" startPos="+startPos + " endPos="+endPos + " articlesProvider.length="+articlesFeed.length);
-    if  (endPos>articlesFeed.length) {
+    console.log("curPage=" + curPage + " startPos=" + startPos + " endPos=" + endPos + " articlesProvider.length=" + articlesFeed.length);
+    if (endPos > articlesFeed.length) {
         endReached = true;
         endPos = articlesFeed.length;
     } else {
 
     }
-    console.log("corrected curPage="+ curPage+" startPos="+startPos + " endPos="+endPos  + " articlesProvider.length="+articlesFeed.length);
+    console.log("corrected curPage=" + curPage + " startPos=" + startPos + " endPos=" + endPos + " articlesProvider.length=" + articlesFeed.length);
 
-    for (var i=startPos;i<endPos;i++) {
+    for (var i = startPos; i < endPos; i++) {
         var aid = articlesFeed[i];
-        console.log("indxHaveFeedData articleModel aid" + aid + " i="+i);
+        console.log("indxHaveFeedData articleModel aid" + aid + " i=" + i);
         var articleModel = articlesProvider[aid];
         var itemRenderer = new FeedItemRenderer(aid);
 
@@ -59,9 +56,9 @@ function indxHaveFeedData() {
 
 
     //if (curPage===0) {
-        var template = $('#indx_look_at_play_template').html();
-        var rendered = Mustache.render(template);
-        $('#indx_items').append(rendered);
+    var template = $('#indx_look_at_play_template').html();
+    var rendered = Mustache.render(template);
+    $('#indx_items').append(rendered);
     //}
 
     console.log("indxHaveFeedData dataLoaded=" + curPage);
@@ -70,15 +67,15 @@ function indxHaveFeedData() {
     ga('send', 'event', 'ui', 'Feed page loaded');
 
     /*
-    $.each(articlesFeed, function (i, aid) {
-        console.log("aid" + aid);
+     $.each(articlesFeed, function (i, aid) {
+     console.log("aid" + aid);
 
-        var articleModel = articlesProvider[aid];
-        console.log("articleModel.title" + articleModel.title);
+     var articleModel = articlesProvider[aid];
+     console.log("articleModel.title" + articleModel.title);
 
 
 
-    });*/
+     });*/
     //$('#indx_footer').show();
     //nowLoading = false;
 
@@ -86,13 +83,25 @@ function indxHaveFeedData() {
 }
 
 
+function showErrorScreen() {
+    console.log("Indx showErrorScreen");
+    errorScreen = new ErrorRenderer();
+
+    $('body').append(errorScreen.getDom());
+
+
+    ga('send', 'event', 'ui', 'Error screen');
+
+}
+
+
 function showFullScreen(articleModel, imageSrc) {
     console.log("Indx showFullScreen");
-    fullScreen =  new FullScreenRenderer(articleModel,imageSrc);
+    fullScreen = new FullScreenRenderer(articleModel, imageSrc);
 
     $('body').append(fullScreen.getDom());
-    $('#indx_full_screen_image_holder',this.elHTML).width($('#indx_full_screen',this.elHTML).width());
-    $('#indx_full_screen_image_holder',this.elHTML).height($('#indx_full_screen',this.elHTML).height());
+    $('#indx_full_screen_image_holder', this.elHTML).width($('#indx_full_screen', this.elHTML).width());
+    $('#indx_full_screen_image_holder', this.elHTML).height($('#indx_full_screen', this.elHTML).height());
 
     //$('#indx_full_screen_image').smartZoom();
     $('#indx_full_screen_image').panzoom();
@@ -102,11 +111,60 @@ function showFullScreen(articleModel, imageSrc) {
 }
 
 
-function FullScreenRenderer(articleModel,imageSrc) {
+
+
+
+function ErrorRenderer() {
     console.log("Indx FullScreenRenderer");
     var self = this;
     nowImageFullScreen = true;
-    $('body').css("overflow","hidden");
+    $('body').css("overflow", "hidden");
+    $('html').css("overflow", "hidden");
+    var template = $('#indx_error_screen').html();
+    this.rendered = Mustache.render(template);
+
+
+    this.elHTML = document.createElement('div');
+    this.elHTML.innerHTML = this.rendered;
+
+    //console.log(this.elHTML);
+    this.elHTML.setAttribute('id', 'indx_error_screen');
+
+
+
+
+
+    this.needClear = function () {
+        console.log("Indx needClear");
+        $('body').css("overflow", "");
+        $('html').css("overflow", "");
+        nowImageFullScreen = false;
+        this.elHTML.remove();
+    }
+
+
+    this.getDom = function () {
+
+        return this.elHTML;
+    }
+
+    $(this.elHTML).on("click", function (e) {
+        console.log("Indx remove");
+        self.needClear();
+        location.reload();
+    });
+
+
+
+}
+
+
+function FullScreenRenderer(articleModel, imageSrc) {
+    console.log("Indx FullScreenRenderer");
+    var self = this;
+    nowImageFullScreen = true;
+    $('body').css("overflow", "hidden");
+    $('html').css("overflow", "hidden");
     var template = $('#indx_full_screen').html();
     this.rendered = Mustache.render(template);
     this.articleModel = articleModel;
@@ -118,18 +176,16 @@ function FullScreenRenderer(articleModel,imageSrc) {
     this.elHTML.setAttribute('id', 'indx_full_screen');
 
 
-    $('#indx_full_screen_image',this.elHTML).attr( "src",this.imageSrc );
-
-
+    $('#indx_full_screen_image', this.elHTML).attr("src", this.imageSrc);
 
 
     //$('#indx_full_screen_image').panzoom();
 
 
-
     this.needClear = function () {
         console.log("Indx needClear");
-        $('body').css("overflow","");
+        $('body').css("overflow", "");
+        $('html').css("overflow", "");
         nowImageFullScreen = false;
         this.elHTML.remove();
     }
@@ -149,7 +205,7 @@ function FullScreenRenderer(articleModel,imageSrc) {
         console.log("Indx sendmess");
         ga('send', 'event', 'ui', 'Share clicked in full screen image');
         self.needClear();
-        sendMessage(self.articleModel._id,self.imageSrc,self.articleModel._title,self.articleModel._description);
+        sendMessage(self.articleModel._id, self.imageSrc, self.articleModel._title, self.articleModel._description);
     });
 
 }
@@ -163,7 +219,6 @@ function HeaderRenderer() {
     var self = this;
     //console.log(this.elHTML);
     this.elHTML.setAttribute('id', 'header_container');
-
 
 
     $(this.elHTML).on("click", "#indx_header_reload", function (e) {
@@ -185,45 +240,45 @@ function HeaderRenderer() {
 
 
     /*
-    $(this.elHTML).on("click", "#indx_play_button", function (e) {
-        gotoMarket();
-    });*/
+     $(this.elHTML).on("click", "#indx_play_button", function (e) {
+     gotoMarket();
+     });*/
 
 
     /*
-    $(this.elHTML).on("click", "#indx_header_back", function (e) {
-        ga('send', 'event', 'ui', 'Back arrow clicked');
-        if (oneArticleAid.length>0) {
-            oneArticleAid = "";
+     $(this.elHTML).on("click", "#indx_header_back", function (e) {
+     ga('send', 'event', 'ui', 'Back arrow clicked');
+     if (oneArticleAid.length>0) {
+     oneArticleAid = "";
 
-            curPage = 0;
-            window.scrollTo(0, 0);
-            indxGetFeedData(feedsProvider[0].id, curPage);
-        } else {
-            mailru.app.back();
-        }
-    });
-
-
-    $(this.elHTML).on("click", "#indx_header_logo", function (e) {
-        ga('send', 'event', 'ui', 'Logo clicked');
-        if (oneArticleAid.length>0) {
-            oneArticleAid = "";
-            curPage = 0;
-            indxGetFeedData(feedsProvider[0].id, curPage);
-        } else {
-            mailru.app.back();
-        }
+     curPage = 0;
+     window.scrollTo(0, 0);
+     indxGetFeedData(feedsProvider[0].id, curPage);
+     } else {
+     mailru.app.back();
+     }
+     });
 
 
-    });*/
+     $(this.elHTML).on("click", "#indx_header_logo", function (e) {
+     ga('send', 'event', 'ui', 'Logo clicked');
+     if (oneArticleAid.length>0) {
+     oneArticleAid = "";
+     curPage = 0;
+     indxGetFeedData(feedsProvider[0].id, curPage);
+     } else {
+     mailru.app.back();
+     }
+
+
+     });*/
 
     $(this.elHTML).on("click", "#indx_header_container", function (e) {
 
         console.log("Indx back go");
         ga('send', 'event', 'ui', 'Back clicked');
 
-        if (oneArticleAid.length>0) {
+        if (oneArticleAid.length > 0) {
             oneArticleAid = "";
 
             curPage = 0;
@@ -233,15 +288,6 @@ function HeaderRenderer() {
             mailru.app.back();
         }
     });
-
-
-
-
-
-
-
-
-
 
 
     this.getDom = function () {
@@ -263,7 +309,6 @@ function HeaderRenderer() {
 }
 
 
-
 function nowLoadingData() {
     nowLoading = true;
     headerRenderer.setLoading();
@@ -277,27 +322,43 @@ function dataLoaded() {
 }
 
 
-
 function handleBack() {
 
 }
 
 
-function sendMessage(aid,image, title,description) {
-    ga('send', 'event', 'ui', 'Send message',title + ' '+ image);
+function sendMessage(aid, image, title, description) {
+    ga('send', 'event', 'ui', 'Send message', title + ' ' + image);
     var params = {};
     params.image = image;
     params.text = description;
     //var fall =
-    if (toUin!==undefined) {
+    if (toUin !== undefined) {
         params.uin = toUin;
     }
 
-    params.fallback =  {text:" ÀÓ‚Ë Í‡ÚËÌÍÛ )) " + image};
-    params.title = title;
-    params.data = {"aid":aid};
+    var moreFallback = '';
+    try {
+        if (title !== undefined) {
+            moreFallback = moreFallback + "" + title + " ";
+        }
 
-    console.log("share! params="+params);
+        if (description !== undefined) {
+            new String("a").valueOf() == new String("a").valueOf()
+            if (title.valueOf() != description.valueOf()) {
+                moreFallback = moreFallback  + description;
+            }
+        }
+    } catch (e) {
+
+    }
+
+
+    params.fallback = {text: " –ª–æ–≤–∏ –∫–∞—Ä—Ç–∏–Ω–∫—É )) " + image + " " + moreFallback} ;
+    params.title = title;
+    params.data = {"aid": aid};
+
+    console.log("share! params=" + params);
     mailru.message.send(params);
 }
 
@@ -305,7 +366,6 @@ function sendMessage(aid,image, title,description) {
 function gotoMarket() {
     window.open("https://play.google.com/store/apps/details?id=com.indxnews&referrer=utm_source%3Dicqapp");
 }
-
 
 
 function FeedItemRenderer(aid) {
@@ -335,7 +395,7 @@ function FeedItemRenderer(aid) {
     var streamName = getTagValue("stN:", this.articleModel._tags);
     this.articleModel.streamName = streamName;
     var streamImage = getStreamImage(streamName);
-    console.log("streamImage="+streamImage);
+    console.log("streamImage=" + streamImage);
     var sourceImg = "" + streamImage + "";
     this.articleModel.sourceImg = sourceImg;
 
@@ -344,11 +404,11 @@ function FeedItemRenderer(aid) {
 
 
     var processedImage;
-    if (this.articleModel._image!==undefined) {
+    if (this.articleModel._image !== undefined) {
         processedImage = imageStorePath + this.articleModel._image + "_w1024";
         this.articleModel.processedImage = processedImage;
     }
-    if (this.articleModel._imageGif!==undefined) {
+    if (this.articleModel._imageGif !== undefined) {
         processedImage = imageStorePath + this.articleModel._imageGif + "_";
         this.articleModel.processedImage = processedImage;
     }
@@ -369,14 +429,14 @@ function FeedItemRenderer(aid) {
     if (desc != undefined) desc = desc.trim();
     if (body != undefined) body = body.trim();
     if (body == undefined || body == '') {
-    	$(this.elHTML).find("[data-name='show_more']").hide();
+        $(this.elHTML).find("[data-name='show_more']").hide();
     } else {
-    	if (body == desc && this.articleModel._bodyPresentedJson.body.length < 2) {
-    		$(this.elHTML).find("[data-name='show_more']").hide();
-    	}
+        if (body == desc && this.articleModel._bodyPresentedJson.body.length < 2) {
+            $(this.elHTML).find("[data-name='show_more']").hide();
+        }
     }
 
-    
+
     //this.elHTML = $(this.rendered);
     //this.elHTML = document.createElement(this.rendered);
     // console.log("FeedItemRenderer2 rendered"+this.elHTML);
@@ -401,9 +461,9 @@ function FeedItemRenderer(aid) {
                 if (bodyJSON.name === "img") {
 
                     if (bodyJSON.type === "gif") {
-                        more = more +  "<img class=\"clickableImage indx_item_pic_body\" src=\""+ imageStorePath + bodyJSON.src + "_\"/ >";
+                        more = more + "<img class=\"clickableImage indx_item_pic_body\" src=\"" + imageStorePath + bodyJSON.src + "_\"/ >";
                     } else {
-                        more = more +  "<img class=\"clickableImage indx_item_pic_body\" src=\""+imageStorePath + bodyJSON.src + "_w1024\"/ >";
+                        more = more + "<img class=\"clickableImage indx_item_pic_body\" src=\"" + imageStorePath + bodyJSON.src + "_w1024\"/ >";
                     }
 
                 }
@@ -416,10 +476,10 @@ function FeedItemRenderer(aid) {
                 //console.log("bodyJSON " +bodyJSON);
             }
             console.log("bodyJSON more" + more);
-            $('[data-name="more_holder"]',self.elHTML ).append(more);
+            $('[data-name="more_holder"]', self.elHTML).append(more);
         } else {
             self.moreShowed = false;
-            $('[data-name="more_holder"]',self.elHTML).empty();
+            $('[data-name="more_holder"]', self.elHTML).empty();
         }
 
 
@@ -428,7 +488,7 @@ function FeedItemRenderer(aid) {
     $(this.elHTML).on("click", '[data-name="share_icq"]', function (e) {
         console.log("share!");
         ga('send', 'event', 'ui', 'Share clicked in feed item');
-        sendMessage(self.aid,self.articleModel.processedImage,self.articleModel._title,self.articleModel._description);
+        sendMessage(self.aid, self.articleModel.processedImage, self.articleModel._title, self.articleModel._description);
         //sendMessage("asda","ddd","vvv","mms");
 
     });
@@ -436,10 +496,8 @@ function FeedItemRenderer(aid) {
 
     $(this.elHTML).on("click", '.clickableImage', function (e) {
         console.log("show image!");
-        showFullScreen(self.articleModel,$(this).attr('src'));
+        showFullScreen(self.articleModel, $(this).attr('src'));
     });
-
-
 
 
     this.getDom = function () {

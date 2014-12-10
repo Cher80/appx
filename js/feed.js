@@ -144,7 +144,7 @@ function makeQuery(feedId, page) {
 		$.ajax({
 		  type: 'POST',
 		  url: apiPath + '1_0/queries' + 
-		  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey(),
+		  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey() + '&rand=' + new Date().getTime(),
 		  data: '{ '
 			 + ' "queries": {					 ' 
 			 + ' 	"1234244543": {              ' 
@@ -167,6 +167,7 @@ function makeQuery(feedId, page) {
 		  },
 		  error: function(xhr, type){
 			  onFeedDataPrepareError();
+			  showErrorScreen();
 		  }
 		});
 }
@@ -188,7 +189,7 @@ function putFeed(templId) {
 	$.ajax({
 		  type: 'PUT',
 		  url: apiPath + '1_0/feeds' + 
-		  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey(),
+		  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey() + '&rand=' + new Date().getTime(),
 		  data: '{ '
 			 +' "feeds": [  '
 			 +'         {   '
@@ -214,8 +215,11 @@ function putFeed(templId) {
 		  },
 		  error: function(xhr, type){
 			  onFeedPrepareError();
+			  showErrorScreen();
 		  }
 	});
+
+
 }
 
 
@@ -223,7 +227,7 @@ function getFeeds() {
 	$.ajax({
 	  type: 'GET',
 	  url: apiPath + '1_0/feeds' + 
-	  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey(),
+	  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey() + '&rand=' + new Date().getTime(),
 	  data: '',
 	  dataType: 'json',
 	  timeout: AJAX_REQUEST_TIMEOUT,
@@ -239,6 +243,7 @@ function getFeeds() {
 	  },
 	  error: function(xhr, type) {
 		 onHasNoFeed();
+		  showErrorScreen();
 	  }
 	});
 }
@@ -247,7 +252,7 @@ function getDocument(docId) {
 	$.ajax({
 	  type: 'GET',
 	  url: apiPath + '1_0/docs/' + docId + 
-	  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey(),
+	  '?myNewsSessionId=' + getSessionId() + '&myNewsSessionKey=' + getSessionKey() + '&rand=' + new Date().getTime(),
 	  data: '',
 	  dataType: 'json',
 	  timeout: AJAX_REQUEST_TIMEOUT,
@@ -258,6 +263,7 @@ function getDocument(docId) {
 	  },
 	  error: function(xhr, type){
 		  onDocumentDataError(docId);
+		  showErrorScreen();
 	  }
 	});
 }
