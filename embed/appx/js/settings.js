@@ -4,7 +4,8 @@ var AJAX_REQUEST_TIMEOUT = 3000;
 // prod
 var PROD_IMAGE_STORE_PATH = "https://image.indexisto.com/download/";
 var PROD_API_PATH         = "../../api/";
-var PROD_TEMPLATE_ID      = "5422d2ee822ebe60aace3089";
+//var PROD_TEMPLATE_ID      = "5422d2ee822ebe60aace3089";  Old HUMOR
+var PROD_TEMPLATE_ID      = "548ae6a7822ee93610f7f06e"; //New ICQ HUMOR
 
 // dev
 var DEV_IMAGE_STORE_PATH = "http://image.mynews1.devmail.ru/download/";

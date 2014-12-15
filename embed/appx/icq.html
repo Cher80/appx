@@ -59,9 +59,11 @@
 
 
 
+
 <!--
 <img id="xxx" src="http://s5.pikabu.ru/post_img/2014/12/05/7/1417773644_101743894.jpg"></img>
 -->
+
 
 <div id="indx_items"></div>
 
@@ -74,7 +76,7 @@
         <div class="indx_source_time">{{timeStr}}</div>
     </div>
     <div class="indx_source_share_holder">
-        <div data-name="share_icq" class="indx_source_share hover">Отправить в ICQ!</div>
+        <div data-name="share_icq" class="indx_source_share">Отправить в ICQ!</div>
     </div>
 
 </div>
@@ -106,7 +108,7 @@
 </div>
 
 <div id="indx_item_more_holder">
-<img data-name="show_more" class="indx_item_more hover" src="img/i_more.png"/>
+<img data-name="show_more" class="indx_item_more" src="img/i_more.png"/>
 </div>
 <div data-name="more_holder" class="indx_item_more_content_holder">
 
@@ -122,12 +124,12 @@
 
 
 <script id="indx_header_template" type="x-tmpl-mustache">
-<div id="indx_header_container" class="hover">
+<div id="indx_header_container">
 <img id="indx_header_back" src="img/i_back.png">
 
 <div id="indx_header_logo">Бухта радости )</div>
 </div>
-<div id="indx_header_container_loaders" class="hover">
+<div id="indx_header_container_loaders">
 <img id="indx_header_preloader" src="img/i_preloader.gif">
 <img id="indx_header_reload" src="img/i_reload.png">
 </div>
@@ -137,11 +139,11 @@
 </script>
 
 
-<script id="indx_full_screen" type="x-tmpl-mustache">
+<script id="indx_full_screen_template" type="x-tmpl-mustache">
 
-<img id="indx_full_close" class="hover" src="img/i_close.png"></img>
+<img id="indx_full_close" src="img/i_close.png"></img>
 <div id="indx_full_share_icq_holder">
-    <div id="indx_full_share_icq" class="indx_source_share hover">Отправить в ICQ!</div>
+    <div id="indx_full_share_icq" class="indx_source_share">Отправить в ICQ!</div>
 </div>
 <div id="indx_full_screen_image_holder">
     <img id="indx_full_screen_image"/>
@@ -152,10 +154,9 @@
 
 
 
-<script id="indx_error_screen" type="x-tmpl-mustache">
+<script id="indx_error_screen_template" type="x-tmpl-mustache">
 <div  id="indx_error_screen_container" >
-Ошибка сети. Коснитесь чтобы попробовать загрузить еще раз!
-<img id="indx_error_screen_reload" src="img/i_reload.png">
+Ошибка сети, попробуйте перегрузить ленту
 </div>
 
 </script>
@@ -189,8 +190,9 @@
 
 </div>
 
-<div id="indx_footer_freespace">
 
+
+<div id="indx_footer_freespace">
 
 </div>
 

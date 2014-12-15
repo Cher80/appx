@@ -1,9 +1,16 @@
 function adoptDocument(doc) {
 	try {
 		// presented JSON correction
+
 		var bodyPresentedJson = doc._bodyPresentedJson;
-		bodyPresentedJson = bodyPresentedJson.substring(1);
-		doc._bodyPresentedJson = $.parseJSON(bodyPresentedJson);		
+		if (bodyPresentedJson!==undefined) {
+			try {
+				bodyPresentedJson = bodyPresentedJson.substring(1);
+				doc._bodyPresentedJson = $.parseJSON(bodyPresentedJson);
+			} catch  (e) {
+
+			}
+		}
 		
 		// images correction
 		var image = doc._imageGif;
@@ -67,7 +74,7 @@ function adoptDocument(doc) {
 			doc._imagesGif = imagesGifNew;
 		}
 	} catch (e) {
-		alert(e);
+		//alert(e);
 	}
 	return doc;
 }

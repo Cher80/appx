@@ -15,7 +15,7 @@ function indxHaveOneArticleData() {
     //$('#indx_footer').show();
     //nowLoading = false;
     dataLoaded();
-    bindHover();
+    //bindHover();
     ga('send', 'event', 'ui', 'One article loaded');
 
 
@@ -64,7 +64,7 @@ function indxHaveFeedData() {
 
     console.log("indxHaveFeedData dataLoaded=" + curPage);
     dataLoaded();
-    bindHover();
+    //bindHover();
     ga('send', 'event', 'ui', 'Feed page loaded');
 
     /*
@@ -87,12 +87,10 @@ function indxHaveFeedData() {
 function showErrorScreen() {
     console.log("Indx showErrorScreen");
     errorScreen = new ErrorRenderer();
-
+    dataLoaded();
     $('body').append(errorScreen.getDom());
-
-
+    $( '.fade_out').delay( 2800 ).fadeOut( 1400 );
     ga('send', 'event', 'ui', 'Error screen');
-
 }
 
 
@@ -103,7 +101,7 @@ function showFullScreen(articleModel, imageSrc) {
     $('body').append(fullScreen.getDom());
     $('#indx_full_screen_image_holder', this.elHTML).width($('#indx_full_screen', this.elHTML).width());
     $('#indx_full_screen_image_holder', this.elHTML).height($('#indx_full_screen', this.elHTML).height());
-
+    $('#indx_full_screen').on("touchstart",function(e) {console.log('ds');e.preventDefault();});
     //$('#indx_full_screen_image').smartZoom();
     $('#indx_full_screen_image').panzoom();
 
@@ -119,12 +117,11 @@ function ErrorRenderer() {
     console.log("Indx FullScreenRenderer");
     var self = this;
     nowImageFullScreen = true;
-    $('body').css("overflow", "hidden");
-    $('body').css("position", "relative");
-    $('html').css("overflow", "hidden");
 
 
-    var template = $('#indx_error_screen').html();
+
+
+    var template = $('#indx_error_screen_template').html();
     this.rendered = Mustache.render(template);
 
 
@@ -133,6 +130,9 @@ function ErrorRenderer() {
 
     //console.log(this.elHTML);
     this.elHTML.setAttribute('id', 'indx_error_screen');
+    this.elHTML.setAttribute('class', 'fade_out');
+
+
 
 
 
@@ -140,9 +140,7 @@ function ErrorRenderer() {
 
     this.needClear = function () {
         console.log("Indx needClear");
-        $('body').css("overflow", "");
-        $('body').css("position", "");
-        $('html').css("overflow", "");
+
         nowImageFullScreen = false;
         this.elHTML.remove();
     }
@@ -156,7 +154,7 @@ function ErrorRenderer() {
     $(this.elHTML).on("click", function (e) {
         console.log("Indx remove");
         self.needClear();
-        location.reload();
+        //location.reload();
     });
 
 
@@ -169,8 +167,13 @@ function FullScreenRenderer(articleModel, imageSrc) {
     var self = this;
     nowImageFullScreen = true;
     $('body').css("overflow", "hidden");
+    $('body').css("position", "relative");
     $('html').css("overflow", "hidden");
-    var template = $('#indx_full_screen').html();
+
+
+
+
+    var template = $('#indx_full_screen_template').html();
     this.rendered = Mustache.render(template);
     this.articleModel = articleModel;
     this.imageSrc = imageSrc;
@@ -179,6 +182,7 @@ function FullScreenRenderer(articleModel, imageSrc) {
 
     //console.log(this.elHTML);
     this.elHTML.setAttribute('id', 'indx_full_screen');
+
 
 
     $('#indx_full_screen_image', this.elHTML).attr("src", this.imageSrc);
@@ -191,6 +195,7 @@ function FullScreenRenderer(articleModel, imageSrc) {
         console.log("Indx needClear");
         $('body').css("overflow", "");
         $('html').css("overflow", "");
+        $('body').css("position", "");
         nowImageFullScreen = false;
         this.elHTML.remove();
     }
@@ -201,13 +206,36 @@ function FullScreenRenderer(articleModel, imageSrc) {
         return this.elHTML;
     }
 
-    $(this.elHTML).on("click", "#indx_full_close", function (e) {
+
+
+
+
+    $(this.elHTML).find('#indx_full_close').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
+    });
+
+    $(this.elHTML).find('#indx_full_share_icq').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
+    });
+
+
+
+
+    //$('div#indx_full_screen').on("touchstart",function(e) {console.log('ds');e.preventDefault();})
+    //$('#indx_full_close').on("touchstart",function(e) {console.log('closeee');})
+
+
+    $(this.elHTML).on("touchstart", "#indx_full_close", function (e) {
         console.log("Indx remove");
+
         self.needClear();
     });
 
-    $(this.elHTML).on("click", "#indx_full_share_icq", function (e) {
+    $(this.elHTML).on("touchstart", "#indx_full_share_icq", function (e) {
         console.log("Indx sendmess");
+
         ga('send', 'event', 'ui', 'Share clicked in full screen image');
         self.needClear();
         sendMessage(self.articleModel._id, self.imageSrc, self.articleModel._title, self.articleModel._description);
@@ -231,6 +259,7 @@ function HeaderRenderer() {
         $('#indx_items').empty();
         curPage = 0;
         endReached = false;
+        window.scrollTo(0, 0);
         indxGetFeedData(feedsProvider[0].id, 0, 10, 9991);
     });
 
@@ -239,6 +268,7 @@ function HeaderRenderer() {
         $('#indx_items').empty();
         curPage = 0;
         endReached = false;
+        window.scrollTo(0, 0);
         indxGetFeedData(feedsProvider[0].id, 0, 10, 9991);
         //alert("indx_header_preloader");
     });
@@ -278,6 +308,9 @@ function HeaderRenderer() {
 
      });*/
 
+
+
+
     $(this.elHTML).on("click", "#indx_header_container", function (e) {
 
         console.log("Indx back go");
@@ -292,6 +325,21 @@ function HeaderRenderer() {
         } else {
             mailru.app.back();
         }
+    });
+
+
+
+
+
+    $(this.elHTML).find('#indx_header_container_loaders').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
+    });
+
+
+    $(this.elHTML).find('#indx_header_container').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
     });
 
 
@@ -342,6 +390,12 @@ function sendMessage(aid, image, title, description) {
         params.uin = toUin;
     }
 
+
+    var imageFallback = '';
+    if (image!==undefined) {
+        imageFallback = " лови картинку )) " + image + " ";
+    }
+
     var moreFallback = '';
     try {
         if (title !== undefined) {
@@ -359,7 +413,7 @@ function sendMessage(aid, image, title, description) {
     }
 
 
-    params.fallback = {text: " лови картинку )) " + image + " " + moreFallback} ;
+    params.fallback = {text: imageFallback + moreFallback} ;
     params.title = title;
     params.data = {"aid": aid};
 
@@ -429,16 +483,20 @@ function FeedItemRenderer(aid) {
     this.elHTML.innerHTML = this.rendered;
     this.elHTML.setAttribute('class', 'feed_item_render');
 
-    var desc = this.articleModel._description;
-    var body = this.articleModel._body;
-    if (desc != undefined) desc = desc.trim();
-    if (body != undefined) body = body.trim();
-    if (body == undefined || body == '') {
-        $(this.elHTML).find("[data-name='show_more']").hide();
-    } else {
-        if (body == desc && this.articleModel._bodyPresentedJson.body.length < 2) {
+    try {
+        var desc = this.articleModel._description;
+        var body = this.articleModel._body;
+        if (desc != undefined) desc = desc.trim();
+        if (body != undefined) body = body.trim();
+        if (body == undefined || body == '') {
             $(this.elHTML).find("[data-name='show_more']").hide();
+        } else {
+                 if (body == desc && this.articleModel._bodyPresentedJson.body.length < 2) {
+                    $(this.elHTML).find("[data-name='show_more']").hide();
+             }
         }
+    } catch (e) {
+        $(this.elHTML).find("[data-name='show_more']").hide();
     }
 
 
@@ -490,6 +548,8 @@ function FeedItemRenderer(aid) {
 
     });
 
+
+
     $(this.elHTML).on("click", '[data-name="share_icq"]', function (e) {
         console.log("share!");
         ga('send', 'event', 'ui', 'Share clicked in feed item');
@@ -497,6 +557,19 @@ function FeedItemRenderer(aid) {
         //sendMessage("asda","ddd","vvv","mms");
 
     });
+
+
+    $(this.elHTML).find('[data-name="share_icq"]').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
+    });
+
+
+    $(this.elHTML).find('#indx_item_more_holder').bind('touchstart', function(e) {
+        console.log("do toggle");
+        $(this).fadeOut(100).fadeIn(100 );
+    });
+
 
 
     $(this.elHTML).on("click", '.clickableImage', function (e) {

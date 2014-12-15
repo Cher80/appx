@@ -118,12 +118,13 @@ var optionsZoom = {'top' : '0', // zoom target container top position in pixel
 }
 
 
+/*
 function bindHover() {
     $('.hover').bind('touchstart touchend', function(e) {
         //e.preventDefault();
         $(this).toggleClass('hover_effect');
     });
-}
+}*/
 
 function startFunc() {
     console.log("Indx window ready");
@@ -171,14 +172,19 @@ function startFunc() {
         alert( "clicked" );
     }
 
+
     /*
+
     $('#xxx').on( "click",
         function(e) {
         //showFullScreen(0,$('#xxx').attr('src'));
             showErrorScreen();
         }
+
          );
          */
+
+
 
     //$("#xxx" ).click();
 
@@ -232,6 +238,6 @@ function startFunc() {
 
         }
     });
-    bindHover();
+    //bindHover();
 
 }

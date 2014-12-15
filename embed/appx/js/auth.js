@@ -53,6 +53,7 @@ function login(clientId) {
 		  },
 		  error: function(xhr, type){
 			  onAuthenticationError();
+			  showErrorScreen();
 		  }
 	});
 }
@@ -78,6 +79,7 @@ function register(name) {
 		  },
 		  error: function(xhr, type){
 			  onAuthenticationError();
+			  showErrorScreen();
 		  }
 	});
 }
