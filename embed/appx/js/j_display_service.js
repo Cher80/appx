@@ -101,7 +101,7 @@ function showFullScreen(articleModel, imageSrc) {
     $('body').append(fullScreen.getDom());
     $('#indx_full_screen_image_holder', this.elHTML).width($('#indx_full_screen', this.elHTML).width());
     $('#indx_full_screen_image_holder', this.elHTML).height($('#indx_full_screen', this.elHTML).height());
-    $('#indx_full_screen').on("touchstart",function(e) {console.log('ds');e.preventDefault();});
+    $('#indx_full_screen').on("touchmove",function(e) {console.log('ds');e.preventDefault();});
     //$('#indx_full_screen_image').smartZoom();
     $('#indx_full_screen_image').panzoom();
 
@@ -169,6 +169,7 @@ function FullScreenRenderer(articleModel, imageSrc) {
     $('body').css("overflow", "hidden");
     $('body').css("position", "relative");
     $('html').css("overflow", "hidden");
+    $('html').css("width", "100%");
 
 
 
@@ -211,22 +212,33 @@ function FullScreenRenderer(articleModel, imageSrc) {
 
 
     $(this.elHTML).find('#indx_full_close').bind('touchstart', function(e) {
-        console.log("do toggle");
+        //console.log("do toggle");
         $(this).fadeOut(100).fadeIn(100 );
     });
 
     $(this.elHTML).find('#indx_full_share_icq').bind('touchstart', function(e) {
-        console.log("do toggle");
+        //console.log("do toggle");
         $(this).fadeOut(100).fadeIn(100 );
     });
 
 
 
+    $(this.elHTML).on("click", "#indx_full_close", function (e) {
+        console.log("Indx remove");
+        self.needClear();
+    });
 
-    //$('div#indx_full_screen').on("touchstart",function(e) {console.log('ds');e.preventDefault();})
-    //$('#indx_full_close').on("touchstart",function(e) {console.log('closeee');})
 
 
+    $(this.elHTML).on("click", "#indx_full_share_icq", function (e) {
+        console.log("Indx sendmess");
+        ga('send', 'event', 'ui', 'Share clicked in full screen image');
+        self.needClear();
+        sendMessage(self.articleModel._id, self.imageSrc, self.articleModel._title, self.articleModel._description);
+    });
+
+
+    /*
     $(this.elHTML).on("touchstart", "#indx_full_close", function (e) {
         console.log("Indx remove");
 
@@ -240,6 +252,7 @@ function FullScreenRenderer(articleModel, imageSrc) {
         self.needClear();
         sendMessage(self.articleModel._id, self.imageSrc, self.articleModel._title, self.articleModel._description);
     });
+    */
 
 }
 
@@ -572,10 +585,12 @@ function FeedItemRenderer(aid) {
 
 
 
+    /*
     $(this.elHTML).on("click", '.clickableImage', function (e) {
         console.log("show image!");
         showFullScreen(self.articleModel, $(this).attr('src'));
     });
+    */
 
 
     this.getDom = function () {

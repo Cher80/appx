@@ -280,9 +280,12 @@ body {
     text-align: center;
 }
 
+
+/*
 #indx_full_share_icq:hover {
     background-color: rgba(99, 99, 99, 0.75);
 }
+*/
 
 #indx_full_share_icq_holder {
     border: 0;
@@ -316,10 +319,12 @@ body {
 }
 
 
+/*
 .hover {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
 }
+*/
 
 #indx_header_container_loaders {
     float:right;
@@ -327,7 +332,7 @@ body {
 }
 
 
-
+/*
 .hover_effect {
     background-color: rgba(255, 255, 255, 0.25);
 }
@@ -335,6 +340,7 @@ body {
 .hover_effect_dark {
     background-color: rgba(0, 192, 131, 0.32);
 }
+*/
 
 #indx_error_screen {
     position: fixed;
